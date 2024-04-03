@@ -10,7 +10,6 @@ export interface CreateStoreDto {
   location: string;
 }
 export interface UpdateStoreDto {
-  id: number;
   name: string;
   location: string;
 }

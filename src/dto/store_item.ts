@@ -18,7 +18,6 @@ export interface CreateStoreItem {
   item_id: number;
 }
 export interface UpdateStoreItem {
-  id: number;
   name: string;
   price: number;
   per_qty: number;

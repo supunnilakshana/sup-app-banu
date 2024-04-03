@@ -8,6 +8,5 @@ export interface CreateMeasurementDto {
   name: string;
 }
 export interface UpdateMeasurementDto {
-  id: number;
   name: string;
 }

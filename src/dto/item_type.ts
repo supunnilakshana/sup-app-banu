@@ -10,6 +10,5 @@ export interface CreateItemTypeDto {
 }
 
 export interface UpdateItemTypeDto {
-  id: number;
   name: string;
 }

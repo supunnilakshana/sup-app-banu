@@ -14,7 +14,6 @@ export interface CreateItemDto {
   measurement_id: number;
 }
 export interface UpdateItemDto {
-  id: number;
   name: string;
   image: string | null;
   type_id: number;
