@@ -1,4 +1,4 @@
-export interface StoreItem {
+export interface StoreItemDto {
   id: number;
   name: string;
   price: number;
@@ -9,7 +9,7 @@ export interface StoreItem {
   createdAt: Date;
   updatedAt: Date;
 }
-export interface CreateStoreItem {
+export interface CreateStoreItemDto {
   name: string;
   price: number;
   per_qty: number;
@@ -17,7 +17,7 @@ export interface CreateStoreItem {
   store_id: number;
   item_id: number;
 }
-export interface UpdateStoreItem {
+export interface UpdateStoreItemDto {
   name: string;
   price: number;
   per_qty: number;

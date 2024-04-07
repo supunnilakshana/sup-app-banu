@@ -1,4 +1,4 @@
-import { CreateItemDto, ItemDto, UpdateItemDto } from "@/dto";
+import {CreateItemDto, ItemDto, UpdateItemDto} from "@/dto";
 import supabase from "@/utils/supabase-client";
 
 class ItemService {
@@ -15,7 +15,7 @@ class ItemService {
 
   async getItem(): Promise<ItemDto[]> {
     try {
-      const { data, error } = await supabase.from("items").select("*");
+      const {data, error} = await supabase.from("items").select("*");
       if (error) {
         throw error;
       }

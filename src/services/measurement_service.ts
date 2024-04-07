@@ -1,8 +1,6 @@
 import {
   CreateMeasurementDto,
-  ItemDto,
   MeasurementDto,
-  UpdateItemDto,
   UpdateMeasurementDto,
 } from "@/dto";
 import supabase from "@/utils/supabase-client";
@@ -21,7 +19,7 @@ class MeasurementService {
 
   async getMeasurement(): Promise<MeasurementDto[]> {
     try {
-      const { data, error } = await supabase.from("measurements").select("*");
+      const {data, error} = await supabase.from("measurements").select("*");
       if (error) {
         throw error;
       }
