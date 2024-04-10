@@ -4,8 +4,6 @@ import { columns } from "./columns";
 import ItemTypeService from "../../services/item_type_service";
 import { DataTable } from "@/components/data-table";
 import CreateItemTypeForm from "@/components/form/CreateItemTypeForm";
-import { DeleteItemType } from "@/components/form/DeleteItemType";
-import { EditItemType } from "@/components/form/EditItemType";
 import { ItemTypeDto } from "@/dto";
 
 const itemTypeService = new ItemTypeService();
@@ -29,12 +27,13 @@ function itemType() {
   return (
     <div>
       <section className="py-24 px-20">
-        <h1>All Items Types</h1>
+        <h1 className="text-blue-800 text-xl font-semibold">All Items Types</h1>
+        <CreateItemTypeForm />
+        <br />
+        <br />
+        <br />
         <DataTable columns={columns} data={itemTypes} />
       </section>
-      <CreateItemTypeForm />
-      <EditItemType />
-      <DeleteItemType />
     </div>
   );
 }
