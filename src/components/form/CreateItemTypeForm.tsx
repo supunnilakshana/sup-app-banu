@@ -16,12 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { CreateItemTypeDto } from "@/dto";
 
 const FormSchema = z.object({
   item_type: z.string(),
 });
 
-function ItemTypeForm() {
+const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -29,15 +30,20 @@ function ItemTypeForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+ async function  onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data);
+   await onSave({ name: data.item_type });
+   form.reset();
+   
+     
+    // toast({
+    //   title: "You submitted the following values:",
+    //   description: (
+    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // });
   }
   return (
     <Form {...form}>
@@ -71,3 +77,7 @@ function ItemTypeForm() {
 }
 
 export default ItemTypeForm;
+
+interface ItemTypeFormProps {
+  onSave: (data: CreateItemTypeDto) => Promise<void>;
+}
