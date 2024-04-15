@@ -16,25 +16,26 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import { CreateItemTypeDto } from "@/dto";
+import { CreateStoreDto } from "@/dto";
 
 const FormSchema = z.object({
-  item_type: z.string(),
+  name: z.string(),
+  location: z.string(),
 });
 
-const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {
+const StoreForm: React.FC<StoreFormProps> = ({ onSave }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      item_type: "",
+      name: "",
+      location: "",
     },
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-    await onSave({ name: data.item_type });
-    form.reset();
-
+    // console.log(data);
+    // await onSave({ name: data.name, name: data.location });
+    // form.reset();
     // toast({
     //   title: "You submitted the following values:",
     //   description: (
@@ -54,12 +55,26 @@ const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {
         >
           <FormField
             control={form.control}
-            name="item_type"
+            name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Item Type</FormLabel>
+                <FormLabel>Store Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="add item type" {...field} />
+                  <Input placeholder="add store name" {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Location</FormLabel>
+                <FormControl>
+                  <Input placeholder="add location" {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -78,8 +93,8 @@ const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {
   );
 };
 
-export default ItemTypeForm;
+export default StoreForm;
 
-interface ItemTypeFormProps {
-  onSave: (data: CreateItemTypeDto) => Promise<void>;
+interface StoreFormProps {
+  onSave: (data: CreateStoreDto) => Promise<void>;
 }

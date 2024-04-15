@@ -16,25 +16,25 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import { CreateItemTypeDto } from "@/dto";
+import { CreateMeasurementDto } from "@/dto";
 
 const FormSchema = z.object({
-  item_type: z.string(),
+  name: z.string(),
+  image: z.string(),
 });
 
-const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {
+const MeasurementForm: React.FC<MeasurementFormProps> = ({ onSave }) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      item_type: "",
+      name: "",
     },
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-    await onSave({ name: data.item_type });
-    form.reset();
-
+    // console.log(data);
+    // await onSave({ name: data.name, name : data.image });
+    // form.reset();
     // toast({
     //   title: "You submitted the following values:",
     //   description: (
@@ -54,18 +54,19 @@ const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {
         >
           <FormField
             control={form.control}
-            name="item_type"
+            name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Item Type</FormLabel>
+                <FormLabel>Item Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="add item type" {...field} />
+                  <Input placeholder="add item name" {...field} />
                 </FormControl>
 
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <Button
             type="submit"
             className="bg-green-800 text-white float-right w-2/5"
@@ -78,8 +79,8 @@ const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {
   );
 };
 
-export default ItemTypeForm;
+export default MeasurementForm;
 
-interface ItemTypeFormProps {
-  onSave: (data: CreateItemTypeDto) => Promise<void>;
+interface MeasurementFormProps {
+  onSave: (data: CreateMeasurementDto) => Promise<void>;
 }
