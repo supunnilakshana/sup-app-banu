@@ -24,6 +24,7 @@ export const getColumnDefs: ColumnDef<ItemDto>[] = [
     accessorKey: "image",
     header: "Item Image",
   },
+
   {
     accessorKey: "created_at",
     header: "Created Date",
