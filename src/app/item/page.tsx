@@ -6,6 +6,7 @@ import CreateItemForm from "@/components/form/CreateItemForm";
 import { getColumnDefs } from "./column";
 import { CreateItemDto, ItemDto } from "@/dto";
 import ItemService from "../../services/item_service";
+import NavBar from "@/components/navbar/NavBar";
 
 const itemService = new ItemService();
 
@@ -39,9 +40,11 @@ function Item() {
 
   return (
     <div>
+      <NavBar />
       <section className="py-24 px-20">
         <h1 className="text-blue-800 text-xl font-semibold">All Items</h1>
         <CreateItemForm onSave={addItem} />
+        <br />
         <DataTable columns={getColumnDefs} data={item} />
       </section>
     </div>

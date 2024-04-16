@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { ItemTypeDto, UpdateItemTypeDto } from "@/dto";
 import { Button } from "@/components/ui/button";
@@ -13,16 +13,19 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { promises } from 'dns';
-import EditableRow from './editable-row';
+import { promises } from "dns";
+import EditableRow from "./editable-row";
+import { FaTrash } from "react-icons/fa";
 
 interface ColumnsWithActionsProps {
-  onEdit: (item: UpdateItemTypeDto,id:number) => Promise<void>;
+  onEdit: (item: UpdateItemTypeDto, id: number) => Promise<void>;
   onDelete: (id: number) => Promise<void>;
 }
 
-export const getColumnDefs = ({ onEdit, onDelete }: ColumnsWithActionsProps): ColumnDef<ItemTypeDto>[] => {
-
+export const getColumnDefs = ({
+  onEdit,
+  onDelete,
+}: ColumnsWithActionsProps): ColumnDef<ItemTypeDto>[] => {
   return [
     {
       accessorKey: "name",
@@ -49,19 +52,15 @@ export const getColumnDefs = ({ onEdit, onDelete }: ColumnsWithActionsProps): Co
     {
       id: "actions",
       cell: ({ row }) => {
-      
-
         const item = row.original;
 
         const handleEditClick = () => {
           // onEdit(item,item.id);
           console.log(item.id);
         };
-        let val:String=item.name;
+        let val: String = item.name;
 
-        return (
-          <EditableRow onEdit={onEdit} item={item} ></EditableRow>
-        );
+        return <EditableRow onEdit={onEdit} item={item}></EditableRow>;
       },
     },
     {
@@ -79,14 +78,15 @@ export const getColumnDefs = ({ onEdit, onDelete }: ColumnsWithActionsProps): Co
               <Button
                 variant="outline"
                 className="bg-red-800 text-white hover:bg-red-800 hover:text-white"
-               
               >
-                Delete
+                <FaTrash />
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[350px]">
               <DialogHeader>
-                <DialogTitle className="text-center">Are You Sure !</DialogTitle>
+                <DialogTitle className="text-center">
+                  Are You Sure !
+                </DialogTitle>
               </DialogHeader>
 
               <DialogFooter>

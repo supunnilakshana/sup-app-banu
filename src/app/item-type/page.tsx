@@ -1,10 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {getColumnDefs } from "./column";
+import { getColumnDefs } from "./column";
 import ItemTypeService from "../../services/item_type_service";
 import { DataTable } from "@/components/data-table";
 import CreateItemTypeForm from "@/components/form/CreateItemTypeForm";
-import { CreateItemDto, CreateItemTypeDto, ItemTypeDto, UpdateItemTypeDto } from "@/dto";
+import NavBar from "@/components/navbar/NavBar";
+import {
+  CreateItemDto,
+  CreateItemTypeDto,
+  ItemTypeDto,
+  UpdateItemTypeDto,
+} from "@/dto";
 import { number } from "zod";
 
 const itemTypeService = new ItemTypeService();
@@ -25,8 +31,7 @@ function ItemType() {
     fetchData();
   }, []);
 
-
-  async function addItemType(data: CreateItemTypeDto): Promise<void>{
+  async function addItemType(data: CreateItemTypeDto): Promise<void> {
     try {
       await itemTypeService.createItemType(data);
       const itemTypesData = await itemTypeService.getItemTypes();
@@ -36,11 +41,13 @@ function ItemType() {
       console.error("Error fetching item types:", error);
       alert("Error fetching item types");
     }
-    
   }
-  async function editItemType(data: UpdateItemTypeDto,id:number): Promise<void>{
+  async function editItemType(
+    data: UpdateItemTypeDto,
+    id: number
+  ): Promise<void> {
     try {
-      await itemTypeService.updateItemType(data,id);
+      await itemTypeService.updateItemType(data, id);
       const itemTypesData = await itemTypeService.getItemTypes();
       setItemTypes(itemTypesData);
       alert("Item type updated successfully");
@@ -48,10 +55,9 @@ function ItemType() {
       console.error("Error fetching item types:", error);
       alert("Error fetching item types");
     }
-    
   }
 
-  async function deleteItemType(id: number): Promise<void>{
+  async function deleteItemType(id: number): Promise<void> {
     try {
       await itemTypeService.deleteItemType(id);
       const itemTypesData = await itemTypeService.getItemTypes();
@@ -61,22 +67,24 @@ function ItemType() {
       console.error("Error fetching item types:", error);
       alert("Error fetching item types");
     }
-    
   }
 
   return (
     <div>
+      <NavBar />
       <section className="py-24 px-20">
         <h1 className="text-blue-800 text-xl font-semibold">All Items Types</h1>
-        <CreateItemTypeForm onSave={addItemType}  />
+        <CreateItemTypeForm onSave={addItemType} />
         <br />
         <br />
         <br />
-        <DataTable columns={getColumnDefs({
-          onEdit: editItemType,
-          onDelete: deleteItemType,
-        
-        })} data={itemTypes} />
+        <DataTable
+          columns={getColumnDefs({
+            onEdit: editItemType,
+            onDelete: deleteItemType,
+          })}
+          data={itemTypes}
+        />
       </section>
     </div>
   );

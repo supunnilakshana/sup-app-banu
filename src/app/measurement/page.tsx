@@ -6,6 +6,7 @@ import CreateMeasurementForm from "@/components/form/CreateMeasurementForm";
 import { getColumnDefs } from "./column";
 import { CreateMeasurementDto, MeasurementDto } from "@/dto";
 import MeasurementService from "../../services/measurement_service";
+import NavBar from "@/components/navbar/NavBar";
 
 const measurementService = new MeasurementService();
 
@@ -39,9 +40,13 @@ function Item() {
 
   return (
     <div>
+      <NavBar />
       <section className="py-24 px-20">
-        <h1 className="text-blue-800 text-xl font-semibold">All Items</h1>
+        <h1 className="text-blue-800 text-xl font-semibold">
+          All Measurements
+        </h1>
         <CreateMeasurementForm onSave={addMeasurement} />
+        <br />
         <DataTable columns={getColumnDefs} data={measurement} />
       </section>
     </div>

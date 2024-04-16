@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { ItemTypeDto, UpdateItemTypeDto } from "@/dto";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FaEdit } from "react-icons/fa";
 
 interface EditableRowProps {
-onEdit: ( updateItem:UpdateItemTypeDto,id: number,) => Promise<void>;
+  onEdit: (updateItem: UpdateItemTypeDto, id: number) => Promise<void>;
   item: ItemTypeDto;
- 
 }
 
-const EditableRow: React.FC<EditableRowProps> = ({  onEdit,item }) => {
+const EditableRow: React.FC<EditableRowProps> = ({ onEdit, item }) => {
   const [name, setName] = useState(item.name);
 
   const handleEditClick = () => {
-  
-      console.log(item.id);
-      onEdit({
+    console.log(item.id);
+    onEdit(
+      {
         name: name,
-     },item.id);
+      },
+      item.id
+    );
   };
 
   return (
@@ -29,7 +38,7 @@ const EditableRow: React.FC<EditableRowProps> = ({  onEdit,item }) => {
           variant="outline"
           className="bg-green-800 text-white hover:bg-green-800 hover:text-white"
         >
-          Edit
+          <FaEdit className="h-12" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

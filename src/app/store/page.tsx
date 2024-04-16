@@ -6,6 +6,7 @@ import CreateStoreForm from "@/components/form/CreateStoreForm";
 import { getColumnDefs } from "./column";
 import { CreateStoreDto, StoreDto } from "@/dto";
 import StoreService from "../../services/store_service";
+import NavBar from "@/components/navbar/NavBar";
 
 const storeService = new StoreService();
 
@@ -39,9 +40,11 @@ function Item() {
 
   return (
     <div>
+      <NavBar />
       <section className="py-24 px-20">
-        <h1 className="text-blue-800 text-xl font-semibold">All Items</h1>
+        <h1 className="text-blue-800 text-xl font-semibold">All Stores</h1>
         <CreateStoreForm onSave={addStore} />
+        <br />
         <DataTable columns={getColumnDefs} data={store} />
       </section>
     </div>

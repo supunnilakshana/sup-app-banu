@@ -57,9 +57,9 @@ const MeasurementForm: React.FC<MeasurementFormProps> = ({ onSave }) => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Item Name</FormLabel>
+                <FormLabel>Measurement Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="add item name" {...field} />
+                  <Input placeholder="add measurement name" {...field} />
                 </FormControl>
 
                 <FormMessage />
