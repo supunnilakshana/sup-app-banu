@@ -15,7 +15,10 @@ class ItemTypeService {
 
   async getItemTypes(): Promise<ItemTypeDto[]> {
     try {
-      const {data, error} = await supabase.from("item_types").select("*");
+      const {data, error} = await supabase
+        .from("item_types")
+        .select("*")
+        .order("created_at", {ascending: false});
       if (error) {
         throw error;
       }
