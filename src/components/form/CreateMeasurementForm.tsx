@@ -19,7 +19,9 @@ import { toast } from "@/components/ui/use-toast";
 import { CreateMeasurementDto } from "@/dto";
 
 const FormSchema = z.object({
-  name: z.string(),
+  name: z.string().min(2, {
+    message: "Measurement Name must be at least 2 characters.",
+  }),
 });
 
 const MeasurementForm: React.FC<MeasurementFormProps> = ({ onSave }) => {

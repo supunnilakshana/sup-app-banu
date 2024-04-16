@@ -19,7 +19,9 @@ import { toast } from "@/components/ui/use-toast";
 import { CreateItemTypeDto } from "@/dto";
 
 const FormSchema = z.object({
-  item_type: z.string(),
+  item_type: z.string().min(2, {
+    message: "Item_type must be at least 2 characters.",
+  }),
 });
 
 const ItemTypeForm: React.FC<ItemTypeFormProps> = ({ onSave }) => {

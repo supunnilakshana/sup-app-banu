@@ -19,8 +19,12 @@ import { toast } from "@/components/ui/use-toast";
 import { CreateStoreDto } from "@/dto";
 
 const FormSchema = z.object({
-  name: z.string(),
-  location: z.string(),
+  name: z.string().min(2, {
+    message: "Store Name must be at least 2 characters.",
+  }),
+  location: z.string().min(2, {
+    message: "Location must be at least 2 characters.",
+  }),
 });
 
 const StoreForm: React.FC<StoreFormProps> = ({ onSave }) => {
