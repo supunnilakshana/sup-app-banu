@@ -33,9 +33,9 @@ const StoreForm: React.FC<StoreFormProps> = ({ onSave }) => {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    // console.log(data);
-    // await onSave({ name: data.name, name: data.location });
-    // form.reset();
+    console.log(data);
+    await onSave({ name: data.name, location: data.location });
+    form.reset();
     // toast({
     //   title: "You submitted the following values:",
     //   description: (

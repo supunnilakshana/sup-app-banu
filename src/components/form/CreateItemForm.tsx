@@ -34,7 +34,7 @@ const ItemForm: React.FC<ItemFormProps> = ({ onSave }) => {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     // console.log(data);
-    // await onSave({ name: data.name, name : data.image });
+    // await onSave({ name: data.name, image : data.image });
     // form.reset();
     // toast({
     //   title: "You submitted the following values:",

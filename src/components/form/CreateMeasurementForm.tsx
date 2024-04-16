@@ -20,7 +20,6 @@ import { CreateMeasurementDto } from "@/dto";
 
 const FormSchema = z.object({
   name: z.string(),
-  image: z.string(),
 });
 
 const MeasurementForm: React.FC<MeasurementFormProps> = ({ onSave }) => {
@@ -32,9 +31,9 @@ const MeasurementForm: React.FC<MeasurementFormProps> = ({ onSave }) => {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    // console.log(data);
-    // await onSave({ name: data.name, name : data.image });
-    // form.reset();
+    console.log(data);
+    await onSave({ name: data.name });
+    form.reset();
     // toast({
     //   title: "You submitted the following values:",
     //   description: (
