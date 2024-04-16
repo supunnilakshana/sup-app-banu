@@ -4,7 +4,11 @@ import React, { useState, useEffect } from "react";
 import { DataTable } from "@/components/data-table";
 import CreateMeasurementForm from "@/components/form/CreateMeasurementForm";
 import { getColumnDefs } from "./column";
-import { CreateMeasurementDto, MeasurementDto } from "@/dto";
+import {
+  CreateMeasurementDto,
+  MeasurementDto,
+  UpdateMeasurementDto,
+} from "@/dto";
 import MeasurementService from "../../services/measurement_service";
 import NavBar from "@/components/navbar/NavBar";
 
@@ -38,6 +42,33 @@ function Item() {
     }
   }
 
+  async function editMeasurement(
+    data: UpdateMeasurementDto,
+    id: number
+  ): Promise<void> {
+    try {
+      await measurementService.updateMeasurement(data, id);
+      const measurementData = await measurementService.getMeasurement();
+      setMeasurement(measurementData);
+      alert("Measurement updated successfully");
+    } catch (error) {
+      console.error("Error fetching Measurements:", error);
+      alert("Error fetching Measurements");
+    }
+  }
+
+  async function deleteMeasurement(id: number): Promise<void> {
+    try {
+      await measurementService.deleteMeasurement(id);
+      const measurementData = await measurementService.getMeasurement();
+      setMeasurement(measurementData);
+      alert("Measurement deleted successfully");
+    } catch (error) {
+      console.error("Error fetching Measurements:", error);
+      alert("Error fetching Measurements");
+    }
+  }
+
   return (
     <div>
       <NavBar />
@@ -47,7 +78,13 @@ function Item() {
         </h1>
         <CreateMeasurementForm onSave={addMeasurement} />
         <br />
-        <DataTable columns={getColumnDefs} data={measurement} />
+        <DataTable
+          columns={getColumnDefs({
+            onEdit: editMeasurement,
+            onDelete: deleteMeasurement,
+          })}
+          data={measurement}
+        />
       </section>
     </div>
   );
