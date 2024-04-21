@@ -1,14 +1,14 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
-import {DataTable} from "@/components/data-table";
+import React, { useState, useEffect } from "react";
+import { DataTable } from "@/components/data-table";
 import CreateItemForm from "@/components/form/CreateItemForm";
-import {getColumnDefs} from "./column";
-import {CreateItemDto, ItemDto} from "@/dto";
+import { getColumnDefs } from "./column";
+import { CreateItemDto, ItemDto, UpdateItemDto } from "@/dto";
 import ItemService from "../../services/item_service";
 import NavBar from "@/components/navbar/NavBar";
 import CloudStorageService from "@/services/cloud_storage_service";
-import {log} from "console";
+import { log } from "console";
 
 const itemService = new ItemService();
 const cloudStorageService = new CloudStorageService();
@@ -52,6 +52,30 @@ function Item() {
     }
   }
 
+  async function editItem(data: UpdateItemDto, id: number): Promise<void> {
+    try {
+      await itemService.updateItem(data, id);
+      const itemData = await itemService.getItem();
+      setItem(itemData);
+      alert("Item updated successfully");
+    } catch (error) {
+      console.error("Error fetching items:", error);
+      alert("Error updating Items");
+    }
+  }
+
+  async function deleteItem(id: number): Promise<void> {
+    try {
+      await itemService.deleteItem(id);
+      const itemData = await itemService.getItem();
+      setItem(itemData);
+      alert("Item deleted successfully");
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      alert("Error deleting item");
+    }
+  }
+
   return (
     <div>
       <NavBar />
@@ -59,7 +83,13 @@ function Item() {
         <h1 className="text-blue-800 text-xl font-semibold">All Items</h1>
         <CreateItemForm onSave={addItem} />
         <br />
-        <DataTable columns={getColumnDefs} data={item} />
+        <DataTable
+          columns={getColumnDefs({
+            onEdit: editItem,
+            onDelete: deleteItem,
+          })}
+          data={item}
+        />
       </section>
     </div>
   );

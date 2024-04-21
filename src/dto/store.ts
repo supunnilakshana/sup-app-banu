@@ -2,8 +2,8 @@ export interface StoreDto {
   id: number;
   name: string;
   location: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 export interface CreateStoreDto {
   name: string;

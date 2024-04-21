@@ -127,7 +127,7 @@ const StoreForm: React.FC<StoreItemFormProps> = ({ onSave }) => {
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="store_id"
             render={({ field }) => (
@@ -140,8 +140,8 @@ const StoreForm: React.FC<StoreItemFormProps> = ({ onSave }) => {
                 <FormMessage />
               </FormItem>
             )}
-          />
-          <FormField
+          /> */}
+          {/* <FormField
             control={form.control}
             name="item_id"
             render={({ field }) => (
@@ -154,7 +154,7 @@ const StoreForm: React.FC<StoreItemFormProps> = ({ onSave }) => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
           <Button
             type="submit"
             className="bg-green-800 text-white float-right w-2/5"

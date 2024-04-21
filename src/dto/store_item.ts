@@ -6,8 +6,8 @@ export interface StoreItemDto {
   discount: number;
   store_id: number;
   item_id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 export interface CreateStoreItemDto {
   name: string;
