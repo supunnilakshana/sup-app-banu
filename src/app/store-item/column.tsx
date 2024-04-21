@@ -3,6 +3,7 @@ import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { StoreItemDto, UpdateStoreItemDto } from "@/dto";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -38,31 +39,15 @@ export const columns: ColumnDef<strItem>[] = [
       const item = row.original;
 
       return (
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button
-              variant="outline"
-              className="bg-red-800 text-white hover:bg-red-800 hover:text-white"
-            >
-              View
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[350px]">
-            <DialogHeader>
-              <DialogTitle className="text-center">Are You Sure !</DialogTitle>
-            </DialogHeader>
-
-            <DialogFooter>
-              <Button
-                type="submit"
-                className="bg-red-800 text-white hover:bg-red-800 hover:text-white"
-                onClick={() => navigator.clipboard.writeText(item.id)}
-              >
-                Delete
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+        <Link href="/test">
+          {" "}
+          <Button
+            variant="outline"
+            className="bg-red-800 text-white hover:bg-red-800 hover:text-white"
+          >
+            View
+          </Button>
+        </Link>
       );
     },
   },
