@@ -1,4 +1,4 @@
-import {CreateStoreItemDto, StoreItemDto, UpdateStoreItemDto} from "@/dto";
+import { CreateStoreItemDto, StoreItemDto, UpdateStoreItemDto } from "@/dto";
 import supabase from "@/utils/supabase-client";
 
 class StoreItemService {
@@ -13,9 +13,9 @@ class StoreItemService {
     }
   }
 
-  async getItem(): Promise<StoreItemDto[]> {
+  async getStoreItem(): Promise<StoreItemDto[]> {
     try {
-      const {data, error} = await supabase.from("store_items").select("*");
+      const { data, error } = await supabase.from("store_items").select("*");
       if (error) {
         throw error;
       }
@@ -27,7 +27,7 @@ class StoreItemService {
     }
   }
 
-  async updateItem(item: UpdateStoreItemDto, id: number): Promise<void> {
+  async updateStoreItem(item: UpdateStoreItemDto, id: number): Promise<void> {
     try {
       await supabase.from("store_items").update(item).eq("id", id);
     } catch (error) {
@@ -36,7 +36,7 @@ class StoreItemService {
     }
   }
 
-  async deleteItem(id: number): Promise<void> {
+  async deleteStoreItem(id: number): Promise<void> {
     try {
       await supabase.from("store_items").delete().eq("id", id);
     } catch (error) {

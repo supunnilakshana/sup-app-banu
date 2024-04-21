@@ -16,6 +16,9 @@ function NavBar() {
       <Link href="/measurement" className="mx-5">
         Measurement
       </Link>
+      <Link href="/store-item" className="mx-5">
+        Store Item
+      </Link>
     </div>
   );
 }

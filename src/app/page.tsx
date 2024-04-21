@@ -7,6 +7,7 @@ export default function Home() {
       <Link href="/item">Item</Link>
       <Link href="/store">Store</Link>
       <Link href="/measurement">Measurement</Link>
+      <Link href="/store-item">Store Item</Link>
     </div>
   );
 }
