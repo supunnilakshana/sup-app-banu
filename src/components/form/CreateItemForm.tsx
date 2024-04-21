@@ -1,10 +1,10 @@
 "use client";
 
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,9 +14,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
-import {toast} from "@/components/ui/use-toast";
-import {CreateItemDto, ItemTypeDto} from "@/dto";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { CreateItemDto, ItemTypeDto } from "@/dto";
 import {
   Select,
   SelectContent,
@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import ItemTypeService from "@/services/item_type_service";
 import MeasurementService from "@/services/measurement_service";
 
@@ -35,7 +35,7 @@ const FormSchema = z.object({
   measurementId: z.string(),
 });
 
-const ItemForm: React.FC<ItemFormProps> = ({onSave}) => {
+const ItemForm: React.FC<ItemFormProps> = ({ onSave }) => {
   const [itemTypes, setItemTypes] = useState<ItemTypeDto[]>([]);
   const [measurement, setMeasurement] = useState<ItemTypeDto[]>([]);
   const [selectedItemType, setSelectedItemType] = useState<ItemTypeDto | null>(
@@ -92,27 +92,17 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave}) => {
         >
           <FormField
             control={form.control}
-            name="name"
-            render={({field}) => (
-              <FormItem>
-                <FormLabel>Item Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="add item name" {...field} />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
             name="image"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Image</FormLabel>
                 <FormControl>
-                  <Input placeholder="add item image" {...field} />
+                  <Input
+                    id="picture"
+                    type="file"
+                    placeholder="add item image"
+                    {...field}
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -123,7 +113,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave}) => {
           <FormField
             control={form.control}
             name="typeId"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Item Name</FormLabel>
                 <FormControl>
@@ -152,7 +142,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave}) => {
           <FormField
             control={form.control}
             name="measurementId"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Measurement</FormLabel>
                 <FormControl>
@@ -173,6 +163,21 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave}) => {
                     </SelectContent>
                   </Select>
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Item Type</FormLabel>
+                <FormControl>
+                  <Input placeholder="add item type" {...field} />
+                </FormControl>
+
                 <FormMessage />
               </FormItem>
             )}

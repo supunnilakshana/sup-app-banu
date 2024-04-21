@@ -17,12 +17,20 @@ import { promises } from "dns";
 
 export const getColumnDefs: ColumnDef<ItemDto>[] = [
   {
+    accessorKey: "image",
+    header: "Item Image",
+  },
+  {
     accessorKey: "name",
     header: "Item Name",
   },
   {
-    accessorKey: "image",
-    header: "Item Image",
+    accessorKey: "item_type",
+    header: "Item Type",
+  },
+  {
+    accessorKey: "item_measurement",
+    header: "Item Measurement",
   },
 
   {
