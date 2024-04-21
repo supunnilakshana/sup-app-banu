@@ -1,8 +1,8 @@
 export interface ItemTypeDto {
   id: number;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface CreateItemTypeDto {

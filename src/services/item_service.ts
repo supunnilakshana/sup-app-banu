@@ -1,4 +1,10 @@
-import {CreateItemDto, ItemDto, UpdateItemDto} from "@/dto";
+import {
+  CreateItemDto,
+  ItemDto,
+  ItemTypeDto,
+  MeasurementDto,
+  UpdateItemDto,
+} from "@/dto";
 import supabase from "@/utils/supabase-client";
 
 class ItemService {
@@ -15,12 +21,26 @@ class ItemService {
 
   async getItem(): Promise<ItemDto[]> {
     try {
-      const {data, error} = await supabase.from("items").select("*");
+      const {data, error} = await supabase
+        .from("items")
+        .select(`*, item_types(*), measurements(*)`);
+
       if (error) {
         throw error;
       }
-
-      return data as ItemDto[];
+      const list = data.map((item) => ({
+        id: item.id,
+        name: item.name,
+        image: item.image,
+        type_id: item.type_id,
+        measurement_id: item.measurement_id,
+        created_at: item.created_at,
+        updated_at: item.updated_at,
+        type: item.item_types as ItemTypeDto,
+        measurement: item.measurements as MeasurementDto,
+      })) as ItemDto[];
+      console.log("list", list);
+      return list;
     } catch (error) {
       console.error(error);
       throw error;
