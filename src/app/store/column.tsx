@@ -79,12 +79,7 @@ export const getColumnDefs = ({
         return (
           <Dialog>
             <DialogTrigger asChild>
-              <Button
-                variant="outline"
-                className="bg-red-800 text-white hover:bg-red-800 hover:text-white"
-              >
-                <FaTrash />
-              </Button>
+              <FaTrash className=" text-red-800 outline-none  hover:text-red-800" />
             </DialogTrigger>
             <DialogContent className="sm:max-w-[350px]">
               <DialogHeader>

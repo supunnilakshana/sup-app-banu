@@ -45,7 +45,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md border">
-      <div className="flex items-center py-4">
+      <div className="flex items-center pt-4 pb-8 pl-8 focus:outline-none active:outline-none ">
         <Input
           placeholder="Find Store Item...."
           value={
@@ -58,7 +58,7 @@ export function DataTable<TData, TValue>({
         />
       </div>
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-blue-200">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {

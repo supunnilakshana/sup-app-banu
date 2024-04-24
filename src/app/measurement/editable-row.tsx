@@ -37,12 +37,7 @@ const EditableRow: React.FC<EditableRowProps> = ({ onEdit, item }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="bg-green-800 text-white hover:bg-green-800 hover:text-white"
-        >
-          <FaEdit className="h-12" />
-        </Button>
+        <FaEdit className="text-green-800 outline-none hover:text-green-800 " />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
