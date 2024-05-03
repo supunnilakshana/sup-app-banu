@@ -1,7 +1,7 @@
 import React from "react";
-import { ColumnDef } from "@tanstack/react-table";
-import { ItemDto, UpdateItemDto } from "@/dto";
-import { Button } from "@/components/ui/button";
+import {ColumnDef} from "@tanstack/react-table";
+import {ItemDto, UpdateItemDto} from "@/dto";
+import {Button} from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,14 +11,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { promises } from "dns";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
+import {promises} from "dns";
+import EditItemForm from "@/components/form/EditItemForm";
+import {FaTrash} from "react-icons/fa";
 import EditableRow from "./editable-row";
-import { FaTrash } from "react-icons/fa";
 
 interface ColumnsWithActionsProps {
-  onEdit: (item: UpdateItemDto, id: number) => Promise<void>;
+  onEdit: (data: UpdateItemDto, file: File | null, id: number) => Promise<void>;
   onDelete: (id: number) => Promise<void>;
 }
 
@@ -30,6 +31,20 @@ export const getColumnDefs = ({
     {
       accessorKey: "image",
       header: "Item Image",
+      cell: ({row}) => {
+        const imgUrl =
+          row.getValue("image") ??
+          "https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png";
+
+        return (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={imgUrl as string} // Cast imgUrl to string
+            alt="item image"
+            className="h-10 w-10 rounded-full"
+          />
+        );
+      },
     },
     {
       accessorKey: "name",
@@ -47,7 +62,7 @@ export const getColumnDefs = ({
     {
       accessorKey: "created_at",
       header: "Created Date",
-      cell: ({ row }) => {
+      cell: ({row}) => {
         const date = new Date(row.getValue("created_at"));
         const formatted = date.toLocaleDateString();
         return <div className="">{formatted}</div>;
@@ -56,7 +71,7 @@ export const getColumnDefs = ({
     {
       accessorKey: "updated_at",
       header: "Updated Date",
-      cell: ({ row }) => {
+      cell: ({row}) => {
         const date = new Date(row.getValue("updated_at"));
         const formatted = date.toLocaleDateString();
         return <div className="">{formatted}</div>;
@@ -64,7 +79,7 @@ export const getColumnDefs = ({
     },
     {
       id: "actions",
-      cell: ({ row }) => {
+      cell: ({row}) => {
         const item = row.original;
 
         const handleEditClick = () => {
@@ -78,7 +93,7 @@ export const getColumnDefs = ({
     },
     {
       id: "actions",
-      cell: ({ row }) => {
+      cell: ({row}) => {
         const item = row.original;
 
         const handleDeleteClick = () => {

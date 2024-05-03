@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ItemTypeDto, UpdateItemTypeDto } from "@/dto";
+import React, {useState} from "react";
+import {ItemTypeDto, UpdateItemTypeDto} from "@/dto";
 import {
   Dialog,
   DialogContent,
@@ -8,17 +8,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { FaEdit } from "react-icons/fa";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
+import {FaEdit} from "react-icons/fa";
 
 interface EditableRowProps {
   onEdit: (updateItem: UpdateItemTypeDto, id: number) => Promise<void>;
   item: ItemTypeDto;
 }
 
-const EditableRow: React.FC<EditableRowProps> = ({ onEdit, item }) => {
+const EditableRow: React.FC<EditableRowProps> = ({onEdit, item}) => {
   const [name, setName] = useState(item.name);
 
   const handleEditClick = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   ItemDto,
   ItemTypeDto,
@@ -14,35 +14,26 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { FaEdit } from "react-icons/fa";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
+import {FaEdit} from "react-icons/fa";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {Edit} from "lucide-react";
+import EditItemForm from "@/components/form/EditItemForm";
 
 interface EditableRowProps {
-  onEdit: (updateItem: UpdateItemDto, id: number) => Promise<void>;
+  onEdit: (data: UpdateItemDto, file: File | null, id: number) => Promise<void>;
   item: ItemDto;
 }
 
-const EditableRow: React.FC<EditableRowProps> = ({ onEdit, item }) => {
-  const [name, setName] = useState(item.name);
-  const [type, setType] = useState(item.type_id);
-  const [image, setImage] = useState(item.image);
-  const [measurement, setMeasurement] = useState(item.measurement_id);
-
-  const handleEditClick = () => {
-    console.log(item.id);
-    onEdit(
-      {
-        name: name,
-        type_id: type,
-        image: image,
-        measurement_id: measurement,
-      },
-      item.id
-    );
-  };
-
+const EditableRow: React.FC<EditableRowProps> = ({onEdit, item}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -52,53 +43,8 @@ const EditableRow: React.FC<EditableRowProps> = ({ onEdit, item }) => {
         <DialogHeader>
           <DialogTitle>Edit Item</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Item Image
-            </Label>
-            <Input
-              id="picture"
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.value)}
-              placeholder="add item image"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Item Type
-            </Label>
-            {/* <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select Item Type" />
-              </SelectTrigger>
-              <SelectContent>
-                {itemTypes.map((itemType) => (
-                  <SelectItem key={itemType.id} value={itemType.id.toString()}>
-                    {itemType.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select> */}
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Item Name
-            </Label>
-            <Input
-              id="name"
-              className="col-span-3"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit" onClick={handleEditClick}>
-            Save changes
-          </Button>
-        </DialogFooter>
+
+        <EditItemForm onSave={onEdit} item={item} />
       </DialogContent>
     </Dialog>
   );
