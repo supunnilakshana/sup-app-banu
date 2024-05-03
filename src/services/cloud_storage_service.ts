@@ -18,8 +18,16 @@ class CloudStorageService {
         return null;
       }
 
+      const val = await supabase.storage
+        .from(bucketName)
+        .getPublicUrl(`public/${file.name}`);
+      console.log("Public URL:", val);
+      if (val.data?.publicUrl == null) {
+        console.error("Error getting public URL: no data returned");
+        return null;
+      }
       console.log("File uploaded successfully:", data);
-      return data.path;
+      return val.data.publicUrl;
     } catch (error) {
       console.error("Error uploading file:", error);
       return null;
