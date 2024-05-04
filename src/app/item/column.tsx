@@ -31,7 +31,8 @@ export const getColumnDefs = ({
     {
       accessorKey: "image",
       header: "Item Image",
-      cell: ({row}) => {
+      cell: ({ row }) => {
+        
         const imgUrl =
           row.getValue("image") ??
           "https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png";
