@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import Image from "next/image";
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,9 +15,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
-import {toast} from "@/components/ui/use-toast";
-import {ItemDto, ItemTypeDto, MeasurementDto, UpdateItemDto} from "@/dto";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { ItemDto, ItemTypeDto, MeasurementDto, UpdateItemDto } from "@/dto";
 import {
   Select,
   SelectContent,
@@ -25,10 +25,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import ItemTypeService from "@/services/item_type_service";
 import MeasurementService from "@/services/measurement_service";
-import {log} from "console";
+import { log } from "console";
 import LoadingIndicator from "../loading/LoadingIndicator";
 
 const FormSchema = z.object({
@@ -38,7 +38,7 @@ const FormSchema = z.object({
   measurementId: z.string(),
 });
 
-const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
+const ItemForm: React.FC<ItemFormProps> = ({ onSave, item }) => {
   const [itemTypes, setItemTypes] = useState<ItemTypeDto[]>([]);
   const [measurement, setMeasurement] = useState<MeasurementDto[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -89,7 +89,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-1/3 space-y-6  justify-center mx-auto my-8"
+            className=" space-y-6  justify-center mx-auto my-8"
           >
             {selectedFile != null ? (
               <img
@@ -97,6 +97,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
                 alt="Edit Item Image"
                 width={100}
                 height={100}
+                className="rounded-full flex mx-auto justify-center mt-8"
               />
             ) : item.image ? (
               <img
@@ -104,13 +105,14 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
                 alt="Edit Item Image"
                 width={100}
                 height={100}
+                className="rounded-full flex mx-auto justify-center mt-8"
               />
             ) : null}
 
             <FormField
               control={form.control}
               name="image"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Image</FormLabel>
                   <FormControl>
@@ -118,6 +120,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
                       id="picture"
                       type="file"
                       accept="image/*"
+                      className=" flex mx-auto justify-center mt-8"
                       onChange={(e) => {
                         const file = e.target.files?.[0];
                         if (file) {
@@ -137,7 +140,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             <FormField
               control={form.control}
               name="typeId"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Item Type</FormLabel>
                   <FormControl>
@@ -145,7 +148,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select Item Type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -168,7 +171,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             <FormField
               control={form.control}
               name="measurementId"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Measurement</FormLabel>
                   <FormControl>
@@ -176,7 +179,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="w-[180px]">
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select Item Measurement" />
                       </SelectTrigger>
                       <SelectContent>
@@ -196,7 +199,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             <FormField
               control={form.control}
               name="name"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Item Name</FormLabel>
                   <FormControl>
@@ -209,7 +212,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             />
             <Button
               type="submit"
-              className="bg-green-800 text-white float-right w-2/5"
+              className="bg-green-800 text-white hover:bg-green-800 w-full"
             >
               Save
             </Button>

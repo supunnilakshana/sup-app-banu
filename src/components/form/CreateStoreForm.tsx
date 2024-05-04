@@ -87,7 +87,7 @@ const StoreForm: React.FC<StoreFormProps> = ({ onSave }) => {
           />
           <Button
             type="submit"
-            className="bg-green-800 text-white float-right w-2/5"
+            className="bg-green-800 text-white hover:bg-green-800  w-full"
           >
             Save
           </Button>
