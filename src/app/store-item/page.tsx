@@ -1,41 +1,63 @@
-import React from "react";
+"use client";
+
+import React, {useState, useEffect} from "react";
+import {DataTable} from "@/components/data-table";
+import CreateItemForm from "@/components/form/CreateItemForm";
+import {getColumnDefs} from "./column";
+import {CreateItemDto, ItemDto, UpdateItemDto} from "@/dto";
+import ItemService from "../../services/item_service";
 import NavBar from "@/components/navbar/NavBar";
-import { DataTable } from "@/components/store-item-data-table";
-import { columns, strItem } from "./column";
+import CloudStorageService from "@/services/cloud_storage_service";
+import {log} from "console";
 
-async function getData(): Promise<strItem[]> {
-  return [
-    {
-      id: "728ed52f",
-      store_item: "beans",
-      category: "vegitable",
-    },
-    {
-      id: "728ed528",
-      store_item: "aaaaaaaaaaa",
-      category: "vegitable",
-    },
-    {
-      id: "728ed529",
-      store_item: "cccccccccccccc",
-      category: "vegitable",
-    },
-    {
-      id: "728ed59f",
-      store_item: "beansddddddddddddd",
-      category: "vegitable",
-    },
-  ];
-}
+const itemService = new ItemService();
+const cloudStorageService = new CloudStorageService();
 
-export default async function StoreItem() {
-  const data = await getData();
+function Item() {
+  const [item, setItem] = useState<ItemDto[]>([]);
+  const [filterItem, setFilterItem] = useState<ItemDto[]>([]);
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+    const filteredItems = item.filter((item) =>
+      item.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilterItem(filteredItems);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const itemsData = await itemService.getItem();
+        setItem(itemsData);
+        setFilterItem(itemsData);
+      } catch (error) {
+        console.error("Error fetching item:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <NavBar />
       <section className="py-24 px-20">
-        <DataTable columns={columns} data={data} />
+        <h1 className="text-blue-800 text-xl font-semibold">Store Items</h1>
+
+        <br />
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchText}
+          onChange={handleSearch}
+        />
+
+        <DataTable columns={getColumnDefs({})} data={filterItem} />
       </section>
     </div>
   );
 }
+
+export default Item;

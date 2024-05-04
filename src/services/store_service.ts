@@ -1,4 +1,4 @@
-import { CreateStoreDto, StoreDto, UpdateStoreDto } from "@/dto";
+import {CreateStoreDto, StoreDto, UpdateStoreDto} from "@/dto";
 import supabase from "@/utils/supabase-client";
 
 class StoreService {
@@ -13,9 +13,9 @@ class StoreService {
     }
   }
 
-  async getStore(): Promise<StoreDto[]> {
+  async getStores(): Promise<StoreDto[]> {
     try {
-      const { data, error } = await supabase.from("store").select("*");
+      const {data, error} = await supabase.from("store").select("*");
       if (error) {
         throw error;
       }

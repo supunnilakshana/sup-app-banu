@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { DataTable } from "@/components/data-table";
+import React, {useState, useEffect} from "react";
+import {DataTable} from "@/components/data-table";
 import CreateStoreForm from "@/components/form/CreateStoreForm";
-import { getColumnDefs } from "./column";
-import { CreateStoreDto, StoreDto, UpdateStoreDto } from "@/dto";
+import {getColumnDefs} from "./column";
+import {CreateStoreDto, StoreDto, UpdateStoreDto} from "@/dto";
 import StoreService from "../../services/store_service";
 import NavBar from "@/components/navbar/NavBar";
 
@@ -16,7 +16,7 @@ function Item() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const storesData = await storeService.getStore();
+        const storesData = await storeService.getStores();
         setStore(storesData);
       } catch (error) {
         console.error("Error fetching store:", error);
@@ -29,7 +29,7 @@ function Item() {
   async function addStore(data: CreateStoreDto): Promise<void> {
     try {
       await storeService.createStore(data);
-      const storesData = await storeService.getStore();
+      const storesData = await storeService.getStores();
       setStore(storesData);
       alert("Store added successfully");
     } catch (error) {
@@ -41,7 +41,7 @@ function Item() {
   async function editStore(data: UpdateStoreDto, id: number): Promise<void> {
     try {
       await storeService.updateStore(data, id);
-      const storeData = await storeService.getStore();
+      const storeData = await storeService.getStores();
       setStore(storeData);
       alert("Store updated successfully");
     } catch (error) {
@@ -53,7 +53,7 @@ function Item() {
   async function deleteStore(id: number): Promise<void> {
     try {
       await storeService.deleteStore(id);
-      const storeData = await storeService.getStore();
+      const storeData = await storeService.getStores();
       setStore(storeData);
       alert("Store deleted successfully");
     } catch (error) {
