@@ -1,10 +1,10 @@
 "use client";
 
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
-import {number, z} from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { number, z } from "zod";
 
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -21,11 +21,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
-import {toast} from "@/components/ui/use-toast";
-import {CreateStoreItemDto, StoreDto} from "@/dto";
-import {disconnect} from "process";
-import {useEffect, useState} from "react";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { CreateStoreItemDto, StoreDto } from "@/dto";
+import { disconnect } from "process";
+import { useEffect, useState } from "react";
 import StoreService from "@/services/store_service";
 
 const FormSchema = z.object({
@@ -35,7 +35,7 @@ const FormSchema = z.object({
   store_id: z.string(),
 });
 
-const StoreForm: React.FC<StoreItemFormProps> = ({onSave, id}) => {
+const StoreForm: React.FC<StoreItemFormProps> = ({ onSave, id }) => {
   const [stores, setStores] = useState<StoreDto[]>([]);
 
   useEffect(() => {
@@ -70,14 +70,6 @@ const StoreForm: React.FC<StoreItemFormProps> = ({onSave, id}) => {
       store_id: Number(data.store_id),
     });
     form.reset();
-    // toast({
-    //   title: "You submitted the following values:",
-    //   description: (
-    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // });
   }
   return (
     <div className="border-2 w-2/3 flex mx-auto d-block">
@@ -90,7 +82,7 @@ const StoreForm: React.FC<StoreItemFormProps> = ({onSave, id}) => {
           <FormField
             control={form.control}
             name="store_id"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Store</FormLabel>
                 <FormControl>
@@ -120,7 +112,7 @@ const StoreForm: React.FC<StoreItemFormProps> = ({onSave, id}) => {
           <FormField
             control={form.control}
             name="price"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Price</FormLabel>
                 <FormControl>
@@ -134,7 +126,7 @@ const StoreForm: React.FC<StoreItemFormProps> = ({onSave, id}) => {
           <FormField
             control={form.control}
             name="per_qty"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Per Quantity</FormLabel>
                 <FormControl>
@@ -148,7 +140,7 @@ const StoreForm: React.FC<StoreItemFormProps> = ({onSave, id}) => {
           <FormField
             control={form.control}
             name="discount"
-            render={({field}) => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Discount</FormLabel>
                 <FormControl>

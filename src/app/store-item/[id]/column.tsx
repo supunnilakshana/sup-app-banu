@@ -31,10 +31,7 @@ export const getColumnDefs = ({
       accessorKey: "name",
       header: "   Store Name",
     },
-    {
-      accessorKey: "price",
-      header: "Price",
-    },
+
     {
       accessorKey: "per_qty",
       header: "Per Quantity",
@@ -47,14 +44,7 @@ export const getColumnDefs = ({
       accessorKey: "price",
       header: "Price",
     },
-    {
-      accessorKey: "store_id",
-      header: "Store Id",
-    },
-    {
-      accessorKey: "item_id",
-      header: "Item Id",
-    },
+
     {
       accessorKey: "created_at",
       header: "Created Date",
@@ -82,7 +72,6 @@ export const getColumnDefs = ({
           // onEdit(item,item.id);
           console.log(item.id);
         };
-        let val: String = item.name;
 
         return <EditableRow onEdit={onEdit} item={item} />;
       },
