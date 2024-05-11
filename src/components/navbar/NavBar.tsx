@@ -7,6 +7,9 @@ function NavBar() {
       <div className="w-2/5"></div>
       <div className="w-3/5 justify-between px-auto flex-right pl-20">
         {" "}
+        <Link href="/" className="mx-5">
+          Home
+        </Link>
         <Link href="/item-type" className="mx-5">
           Item Type
         </Link>
