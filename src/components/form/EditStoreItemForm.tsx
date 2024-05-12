@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
-import {z} from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import Image from "next/image";
-import {Button} from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 import {
   ItemDto,
   ItemTypeDto,
@@ -31,10 +31,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import ItemTypeService from "@/services/item_type_service";
 import MeasurementService from "@/services/measurement_service";
-import {log} from "console";
+import { log } from "console";
 import LoadingIndicator from "../loading/LoadingIndicator";
 import StoreService from "@/services/store_service";
 
@@ -45,7 +45,7 @@ const FormSchema = z.object({
   store_id: z.string(),
 });
 
-const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
+const StoreItemForm: React.FC<ItemFormProps> = ({ onSave, item }) => {
   const [stores, setStore] = useState<StoreDto[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -99,7 +99,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             <FormField
               control={form.control}
               name="store_id"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Store</FormLabel>
                   <FormControl>
@@ -129,7 +129,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             <FormField
               control={form.control}
               name="price"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
@@ -143,7 +143,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             <FormField
               control={form.control}
               name="per_qty"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Per Quantity</FormLabel>
                   <FormControl>
@@ -157,7 +157,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
             <FormField
               control={form.control}
               name="discount"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Discount</FormLabel>
                   <FormControl>
@@ -183,7 +183,7 @@ const ItemForm: React.FC<ItemFormProps> = ({onSave, item}) => {
   );
 };
 
-export default ItemForm;
+export default StoreItemForm;
 
 interface ItemFormProps {
   onSave: (data: UpdateStoreItemDto, id: number) => Promise<void>;

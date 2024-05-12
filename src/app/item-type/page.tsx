@@ -38,8 +38,8 @@ function ItemType() {
       setItemTypes(itemTypesData);
       alert("Item type added successfully");
     } catch (error) {
-      console.error("Error fetching item types:", error);
-      alert("Error fetching item types");
+      console.error("Error adding item types:", error);
+      alert("Error adding item types");
     }
   }
   async function editItemType(
@@ -50,10 +50,8 @@ function ItemType() {
       await itemTypeService.updateItemType(data, id);
       const itemTypesData = await itemTypeService.getItemTypes();
       setItemTypes(itemTypesData);
-      alert("Item type updated successfully");
     } catch (error) {
-      console.error("Error fetching item types:", error);
-      alert("Error fetching item types");
+      console.error("Error updating item types:", error);
     }
   }
 
@@ -62,10 +60,8 @@ function ItemType() {
       await itemTypeService.deleteItemType(id);
       const itemTypesData = await itemTypeService.getItemTypes();
       setItemTypes(itemTypesData);
-      alert("Item type deleted successfully");
     } catch (error) {
-      console.error("Error fetching item types:", error);
-      alert("Error fetching item types");
+      console.error("Error deleting item types:", error);
     }
   }
 

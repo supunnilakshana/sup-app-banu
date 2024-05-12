@@ -1,10 +1,10 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
-import {DataTable} from "@/components/data-table";
+import React, { useState, useEffect } from "react";
+import { DataTable } from "@/components/data-table";
 import CreateStoreForm from "@/components/form/CreateStoreForm";
-import {getColumnDefs} from "./column";
-import {CreateStoreDto, StoreDto, UpdateStoreDto} from "@/dto";
+import { getColumnDefs } from "./column";
+import { CreateStoreDto, StoreDto, UpdateStoreDto } from "@/dto";
 import StoreService from "../../services/store_service";
 import NavBar from "@/components/navbar/NavBar";
 
@@ -33,8 +33,7 @@ function Item() {
       setStore(storesData);
       alert("Store added successfully");
     } catch (error) {
-      console.error("Error fetching store:", error);
-      alert("Error fetching store ");
+      console.error("Error adding store:", error);
     }
   }
 
@@ -43,10 +42,8 @@ function Item() {
       await storeService.updateStore(data, id);
       const storeData = await storeService.getStores();
       setStore(storeData);
-      alert("Store updated successfully");
     } catch (error) {
-      console.error("Error fetching stores:", error);
-      alert("Error fetching stores");
+      console.error("Error updating stores:", error);
     }
   }
 
@@ -55,10 +52,8 @@ function Item() {
       await storeService.deleteStore(id);
       const storeData = await storeService.getStores();
       setStore(storeData);
-      alert("Store deleted successfully");
     } catch (error) {
-      console.error("Error fetching stores:", error);
-      alert("Error fetching stores");
+      console.error("Error deleting stores:", error);
     }
   }
 

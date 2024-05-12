@@ -37,8 +37,7 @@ function Item() {
       setMeasurement(measurementsData);
       alert("Measurement added successfully");
     } catch (error) {
-      console.error("Error fetching measurement:", error);
-      alert("Error fetching measurement ");
+      console.error("Error adding measurement:", error);
     }
   }
 
@@ -50,10 +49,8 @@ function Item() {
       await measurementService.updateMeasurement(data, id);
       const measurementData = await measurementService.getMeasurement();
       setMeasurement(measurementData);
-      alert("Measurement updated successfully");
     } catch (error) {
-      console.error("Error fetching Measurements:", error);
-      alert("Error fetching Measurements");
+      console.error("Error updating Measurements:", error);
     }
   }
 
@@ -62,10 +59,8 @@ function Item() {
       await measurementService.deleteMeasurement(id);
       const measurementData = await measurementService.getMeasurement();
       setMeasurement(measurementData);
-      alert("Measurement deleted successfully");
     } catch (error) {
-      console.error("Error fetching Measurements:", error);
-      alert("Error fetching Measurements");
+      console.error("Error deleting Measurements:", error);
     }
   }
 

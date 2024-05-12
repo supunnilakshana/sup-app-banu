@@ -20,7 +20,7 @@ import { CreateItemTypeDto } from "@/dto";
 
 const FormSchema = z.object({
   item_type: z.string().min(2, {
-    message: "Item_type must be at least 2 characters.",
+    message: "Item_type cannot be empty",
   }),
 });
 

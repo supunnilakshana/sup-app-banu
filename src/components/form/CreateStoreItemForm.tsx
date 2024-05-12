@@ -32,7 +32,7 @@ const FormSchema = z.object({
   price: z.string(),
   per_qty: z.string().min(0, "Price must be greater than or equal to 0"),
   discount: z.string(),
-  store_id: z.string(),
+  store_id: z.string().min(2, "please select store"),
 });
 
 const StoreForm: React.FC<StoreItemFormProps> = ({ onSave, id }) => {

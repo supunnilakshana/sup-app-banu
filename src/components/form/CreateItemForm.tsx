@@ -30,10 +30,18 @@ import MeasurementService from "@/services/measurement_service";
 import { log } from "console";
 
 const FormSchema = z.object({
-  name: z.string(),
-  image: z.string(),
-  typeId: z.string(),
-  measurementId: z.string(),
+  name: z.string().min(2, {
+    message: "name cannot be empty.",
+  }),
+  image: z.string().min(2, {
+    message: "please add image",
+  }),
+  typeId: z.string().min(2, {
+    message: "please select item type.",
+  }),
+  measurementId: z.string().min(2, {
+    message: "please select measurement.",
+  }),
 });
 
 const ItemForm: React.FC<ItemFormProps> = ({ onSave }) => {

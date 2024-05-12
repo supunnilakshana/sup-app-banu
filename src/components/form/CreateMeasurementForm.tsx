@@ -20,7 +20,7 @@ import { CreateMeasurementDto } from "@/dto";
 
 const FormSchema = z.object({
   name: z.string().min(2, {
-    message: "Measurement Name must be at least 2 characters.",
+    message: "Measurement cannot be empty.",
   }),
 });
 
