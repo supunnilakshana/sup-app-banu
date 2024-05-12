@@ -1,18 +1,18 @@
 "use client";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import {RiArrowDownSLine} from "react-icons/ri";
-import {DataTable} from "@/components/data-table";
+import { RiArrowDownSLine } from "react-icons/ri";
+import { DataTable } from "@/components/data-table";
 
-import {ItemDto, ItemWSIDto, StoreItemDto} from "@/dto";
+import { ItemDto, ItemWSIDto, StoreItemDto } from "@/dto";
 import StoreItemService from "../../services/store_item_service";
-import {useParams} from "next/navigation";
+import { useParams } from "next/navigation";
 import ItemService from "@/services/item_service";
-import {getColumnDefs} from "./column";
+import { getColumnDefs } from "./column";
 
 const storeItemService = new StoreItemService();
 const itemService = new ItemService();
@@ -49,20 +49,20 @@ export default function ItemSummary() {
                   <img
                     src={item.image ?? "lorempixel.com/100/100"}
                     alt="Item Image"
-                    width={100}
-                    height={100}
-                    className="rounded-full mt-8 mx-10 my-5"
+                    width={50}
+                    height={50}
+                    className=""
                   />{" "}
                 </div>
-                <div>
-                  <h1 className="my-14">{item.name}</h1>
+                <div className="flex items-center">
+                  <h1 className="">{item.name}</h1>
                 </div>
-                <div>
-                  <h1 className="my-14">{item.type.name}</h1>
+                <div className="flex items-center">
+                  <h1 className="">{item.type.name}</h1>
                 </div>
 
                 <CollapsibleTrigger>
-                  <RiArrowDownSLine className=" flex float-right mx-10" />
+                  <RiArrowDownSLine className=" flex float-right mx-10 bg-blue-800 text-2xl rounded-full text-white" />
                 </CollapsibleTrigger>
               </div>
 

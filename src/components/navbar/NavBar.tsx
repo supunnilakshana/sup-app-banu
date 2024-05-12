@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function NavBar() {
   return (
-    <div className="px-20 flex w-full py-5 bg-blue-200 text-gray-500 ">
+    <div className="px-20 flex w-full py-5 bg-blue-800 text-white ">
       <div className="w-2/5"></div>
       <div className="w-3/5 justify-between px-auto flex-right pl-20">
         {" "}
