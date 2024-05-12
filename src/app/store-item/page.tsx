@@ -29,7 +29,7 @@ function Item() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const itemsData = await itemService.getItem();
+        const itemsData = await itemService.getItems();
         setItem(itemsData);
         setFilterItem(itemsData);
       } catch (error) {

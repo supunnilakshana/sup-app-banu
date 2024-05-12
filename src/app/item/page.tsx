@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { DataTable } from "@/components/data-table";
+import React, {useState, useEffect} from "react";
+import {DataTable} from "@/components/data-table";
 import CreateItemForm from "@/components/form/CreateItemForm";
-import { getColumnDefs } from "./column";
-import { CreateItemDto, ItemDto, UpdateItemDto } from "@/dto";
+import {getColumnDefs} from "./column";
+import {CreateItemDto, ItemDto, UpdateItemDto} from "@/dto";
 import ItemService from "../../services/item_service";
 import NavBar from "@/components/navbar/NavBar";
 import CloudStorageService from "@/services/cloud_storage_service";
-import { log } from "console";
+import {log} from "console";
 
 const itemService = new ItemService();
 const cloudStorageService = new CloudStorageService();
@@ -19,7 +19,7 @@ function Item() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const itemsData = await itemService.getItem();
+        const itemsData = await itemService.getItems();
         setItem(itemsData);
       } catch (error) {
         console.error("Error fetching item:", error);
@@ -43,7 +43,7 @@ function Item() {
         }
       }
       await itemService.createItem(data);
-      const itemsData = await itemService.getItem();
+      const itemsData = await itemService.getItems();
       setItem(itemsData);
       alert("Item added successfully");
     } catch (error) {
@@ -59,7 +59,7 @@ function Item() {
   ): Promise<void> {
     try {
       await itemService.updateItem(data, id);
-      const itemData = await itemService.getItem();
+      const itemData = await itemService.getItems();
       setItem(itemData);
       alert("Item updated successfully");
     } catch (error) {
@@ -71,7 +71,7 @@ function Item() {
   async function deleteItem(id: number): Promise<void> {
     try {
       await itemService.deleteItem(id);
-      const itemData = await itemService.getItem();
+      const itemData = await itemService.getItems();
       setItem(itemData);
       alert("Item deleted successfully");
     } catch (error) {
