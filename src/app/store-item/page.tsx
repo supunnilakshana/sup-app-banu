@@ -1,14 +1,14 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
-import {DataTable} from "@/components/data-table";
+import React, { useState, useEffect } from "react";
+import { DataTable } from "@/components/data-table";
 import CreateItemForm from "@/components/form/CreateItemForm";
-import {getColumnDefs} from "./column";
-import {CreateItemDto, ItemDto, UpdateItemDto} from "@/dto";
+import { getColumnDefs } from "./column";
+import { CreateItemDto, ItemDto, UpdateItemDto } from "@/dto";
 import ItemService from "../../services/item_service";
 import NavBar from "@/components/navbar/NavBar";
 import CloudStorageService from "@/services/cloud_storage_service";
-import {log} from "console";
+import { log } from "console";
 
 const itemService = new ItemService();
 const cloudStorageService = new CloudStorageService();
@@ -52,6 +52,7 @@ function Item() {
           placeholder="Search..."
           value={searchText}
           onChange={handleSearch}
+          className="border-2 p-1 w-1/4 my-3"
         />
 
         <DataTable columns={getColumnDefs({})} data={filterItem} />

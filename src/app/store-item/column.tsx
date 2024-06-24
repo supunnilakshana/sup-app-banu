@@ -1,7 +1,7 @@
 import React from "react";
-import {ColumnDef} from "@tanstack/react-table";
-import {ItemDto, UpdateItemDto} from "@/dto";
-import {Button} from "@/components/ui/button";
+import { ColumnDef } from "@tanstack/react-table";
+import { ItemDto, UpdateItemDto } from "@/dto";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,11 +11,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {Input} from "@/components/ui/input";
-import {Label} from "@/components/ui/label";
-import {promises} from "dns";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { promises } from "dns";
 import EditItemForm from "@/components/form/EditItemForm";
-import {FaTrash} from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import Link from "next/link";
 
 interface ColumnsWithActionsProps {}
@@ -26,7 +26,7 @@ export const getColumnDefs =
       {
         accessorKey: "image",
         header: "Item Image",
-        cell: ({row}) => {
+        cell: ({ row }) => {
           const imgUrl =
             row.getValue("image") ??
             "https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png";
@@ -56,7 +56,7 @@ export const getColumnDefs =
 
       {
         id: "actions",
-        cell: ({row}) => {
+        cell: ({ row }) => {
           const item = row.original;
 
           return (
