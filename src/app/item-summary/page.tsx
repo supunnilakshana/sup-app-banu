@@ -80,54 +80,78 @@ export default function ItemSummary() {
   }, []);
   return (
     <div>
-      <div className="mt-10 mx-10 flex">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchText}
-          onChange={handleSearch}
-          className="border-2 p-1 w-1/4 h-1/4"
-        />
-
+      <div className="">
         <Form {...form}>
           <form
             // onSubmit={form.handleSubmit(onSubmit)}
-            className="w-1/3 space-y-6  justify-center mx-auto my-8"
+            className="w-1/2 space-y-6  justify-center mx-auto my-8 "
           >
-            <FormField
-              control={form.control}
-              name="typeId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Item Type</FormLabel>
-                  <FormControl>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select Item Type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {items.map((item) => (
-                          <SelectItem key={item.id} value={item.id.toString()}>
-                            {item.type.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="flex w-full">
+              <FormField
+                control={form.control}
+                name="typeId"
+                render={({ field }) => (
+                  <FormItem className="w-1/2 mx-2 focus:outline-none">
+                    <FormControl>
+                      <Input
+                        id=""
+                        type="text"
+                        value={searchText}
+                        onChange={handleSearch}
+                        placeholder="Search....."
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button
-              type="submit"
-              className="bg-green-800 text-white hover:bg-green-800   w-full"
-            >
-              Find
-            </Button>
+              <FormField
+                control={form.control}
+                name="typeId"
+                render={({ field }) => (
+                  <FormItem className="w-1/2 mx-2 focus:outline-none">
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select Item Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {items.map((item) => (
+                            <SelectItem
+                              key={item.id}
+                              value={item.id.toString()}
+                            >
+                              {item.type.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="flex">
+              {" "}
+              <Button
+                type="submit"
+                className="bg-green-800 text-white hover:bg-green-800 w-3/4 mx-2"
+              >
+                Search
+              </Button>
+              <Button
+                type="submit"
+                className="bg-red-800 text-white hover:bg-red-800 w-1/4 mx-2"
+              >
+                Clear
+              </Button>
+            </div>
           </form>
         </Form>
       </div>
